@@ -10,11 +10,6 @@ avatar_url: /static/img/avatar.jpg
 enableTags: true
 tagarray: []
 
-collections:
-  project:
-    output: true
-    permalink: /project/:path/
-
 social:
     - icon: fa-github
       link: "https://github.com/firxiao"
@@ -31,7 +26,7 @@ paginate: 20
 per_page: 20
 paginate_path: "/page/:num/"
 markdown: kramdown
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-gist
 
