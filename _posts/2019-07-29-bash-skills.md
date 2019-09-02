@@ -54,10 +54,13 @@ E9:47:A2:56:D4:74:C3:F1:8F:BB:7B:6A:B3:07:50:F3:E6:70:69:14
 awk '{a[$1]+=1}END{for (i in a)print i,a[i]}' file
 
 # sort 按列排序
-sort -u -t, -k1,1
+sort -u -t, -k1,1 file
 
 # awk转换txt为csv
-awk '{for(i=1;i<=NF;i++) {if(i<NF) printf $i",";else print $i}}'
+awk '{for(i=1;i<=NF;i++) {if(i<NF) printf $i",";else print $i}}' file
+
+# 多行变一行
+awk BEGIN{RS=EOF}'{gsub(/\n/," ");print}' file
 ```
 
 # Json 处理
