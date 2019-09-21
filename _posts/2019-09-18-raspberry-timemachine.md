@@ -115,9 +115,40 @@ sudo systemctl enable netatalk
 
 至此, 配置就完成了.
 
-接下来在Mac的`Time Machine`中`选择磁盘`就会发现刚创建好的卷.  
-选择使用该卷, 然后使用`pi`登录即可.
+### 在mac上 配置Time Machine
 
-#### 参考:
+接下来在Mac的`Time Machine`中`选择磁盘`就会发现刚创建好的卷.  
+选择使用该卷后, 注意左下角有个`加密备份`, 为了数据安全, 这里推荐勾上.  
+根据提示设置加密密码, 然后使用`pi`登录即可.
+
+### Time Machine 命令行(tmutil)
+
+如果你喜欢使用命令行, 那么可以使用`tmutil`来管理`Time Machine`  
+具体使用方法可以查阅 `man tmutil`  
+下面列几个示例:
+
+```bash
+# 显示用法
+$ tmutil
+
+# 查看Time Machine配置
+$ tmutil destinationinfo
+====================================================
+Name          : Time Machine
+Kind          : Network
+URL           : afp://pi@raspberrypi._afpovertcp._tcp.local./Time%20Machine
+ID            : DE97F471-6E45-43B6-A322-81AB5E9F4C68
+
+# 查看本地快照
+$ tmutil listlocalsnapshots /
+com.apple.TimeMachine.2019-09-20-153324
+com.apple.TimeMachine.2019-09-20-183408
+com.apple.TimeMachine.2019-09-21-012946
+com.apple.TimeMachine.2019-09-21-072111
+com.apple.TimeMachine.2019-09-21-075154
+
+```
+
+#### 参考
 
 [1] <http://netatalk.sourceforge.net/3.1/htmldocs/>
