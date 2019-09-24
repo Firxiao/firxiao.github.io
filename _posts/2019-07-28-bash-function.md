@@ -54,7 +54,7 @@ done
 # 日志
 ```bash
 # Define log file
-longfile=/tmp/log
+logfile=/tmp/log
 
 # Function: Setup logfile and redirect stdout/stderr.
 log_setup() {
