@@ -61,6 +61,11 @@ awk '{for(i=1;i<=NF;i++) {if(i<NF) printf $i",";else print $i}}' file
 
 # 多行变一行
 awk BEGIN{RS=EOF}'{gsub(/\n/," ");print}' file
+
+# 注释行(指定行首添加#)
+sed 's/^keyword/#&/g' file
+# 消除注释(指定行首删除#)
+sed 's/^#\(keyword\)/\1/g' file
 ```
 
 # Json 处理
@@ -155,6 +160,9 @@ use-bytes: yes
 line-display: one-line-both
 show-totals: yes
 log-scale: yes
+
+#tcpdump 检查ping是否响应
+tcpdump -i eth0 icmp 
 ```
 
 # 时间
