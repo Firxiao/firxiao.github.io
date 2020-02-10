@@ -165,10 +165,50 @@ log-scale: yes
 tcpdump -i eth0 icmp 
 ```
 
+# ssh
+```bash
+# 本地转发
+# C 可以ssh访问 B , B 可以访问 A 的 3389 端口 
+# 现在 C 要访问 A 的 3389 端口
+# 转发 A 的 3389 端口至 C 的 7001 端口
+# 在C上执行
+ssh -L 7001:A:3389 user@B
+
+# .ssh/config
+Host B
+HostName B
+LocalForward 7001 A:3389
+
+# 远程转发
+# B 可以ssh访问 A ， A 无法ssh访问 B
+# 现在 A 要ssh访问 B
+# 转发 B 的22端口至 A 的2222
+# 在 B 上执行
+ssh -R 2222:B:22 user@A
+
+# .ssh/config
+Host B
+Hostname B
+RemoteForward 2222 B:22
+
+# socks5 proxy
+DynamicForward 8080
+
+# A通过跳板机B scp C上的文件到本地 
+# 在A上执行
+scp -o ProxyCommand="ssh root@B nc C 22" -r user@C:/tmp/xxx /tmp/xxx
+```
+
 # 时间
 ```bash
 # date获取上个月
 date '+%Y %m' | awk '{if($2==1){$1--;$2=12}else $2--;printf "%d%02d\n",$1,$2}'
+
+# 时区
+ln -s -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 查看当前时区
+date +%:z
 ```
 
 # 磁盘
