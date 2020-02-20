@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bash 常用函数"
+title: "那些年造过的轮子之Bash"
 date:   2019-07-28 22:00:00 +0800
 categories: ['bash']
 ---
