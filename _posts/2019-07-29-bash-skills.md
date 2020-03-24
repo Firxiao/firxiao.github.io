@@ -102,7 +102,6 @@ ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 1 -nr | head -5
 # 免交互更改sudoer
 sudo bash -c 'echo "foobar ALL=(ALL:ALL) ALL" | (EDITOR="tee -a" visudo)'
 
-
 # 查找可执行文件
 find <dir> -executable
 find <dir> -executable -type f
@@ -115,6 +114,13 @@ rsync --progress -ave ssh  user@remoteserver:/src_dir /dest_dir
 
 # 删除大量小文件
 rsync -a --delete blanktest/ test/
+
+# 去重(通过文件大小)
+cd $PATH
+ls -l |awk '{print $5,$NF}'|sort -k 1| awk 'a[$1]++{print $2}'| xargs -t -i rm -f {}
+
+# 去重(通过md5)
+find $PATH -type f -exec md5sum {} \; | sort -k 1 | awk 'a[$1]++{print $2}' | xargs -t -i rm -f {}
 ```
 
 # 网络
@@ -229,4 +235,12 @@ update-ca-trust
 
 # 签发通配符证书
 certbot-auto certonly  -d "*.example.com" --manual --preferred-challenges dns-01  --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+# 乱入
+```
+# Windows命令 验证文件MD5/SHA1/SHA256
+certutil -hashfile file -?
+
+certutil -hashfile file MD5
 ```
