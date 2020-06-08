@@ -81,6 +81,8 @@ sed 's/^#\(keyword\)/\1/g' file
 }
 # 过滤 filter
 cat test.json |jq 'select(.details.name == "James Brown")|.id'
+# 过滤值 contains
+cat test.json |jq 'select(.details.name | contains ("James"))|.details.name'
 # 取值 keys
 jq -r "keys[]"
 ```
