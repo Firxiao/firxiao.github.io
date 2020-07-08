@@ -239,6 +239,13 @@ update-ca-trust
 certbot-auto certonly  -d "*.example.com" --manual --preferred-challenges dns-01  --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
+# Git
+```
+# 自定义commit时间
+git commit --date="10 day ago" -m "Your commit message" 
+git commit --date="10 hour ago" -m "Your commit message" 
+```
+
 # 乱入
 ```
 # Windows命令 验证文件MD5/SHA1/SHA256
