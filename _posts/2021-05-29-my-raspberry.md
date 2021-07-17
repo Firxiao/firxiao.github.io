@@ -44,7 +44,8 @@ sudo pacman -S github-cli rbenv docker docker-compose base-devel golang
 **grafana** 提供了一个非常好用的**node exporter**的dashboard, 整体配置也比较简单.
 
 ```
-sudo pacman -S grafana prometheus prometheus-node-exporter
+yay pacman -S grafana-bin
+sudo pacman -S prometheus prometheus-node-exporter
 ```
 效果如下:
 ![grafana](/static/img/posts/node-exporter-grafana.png "grafana")
