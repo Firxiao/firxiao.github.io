@@ -2,3 +2,6 @@ _site*
 .sass-cache
 .jekyll-metadata
 *backup/
+vendor
+.bundle
+.vscode
