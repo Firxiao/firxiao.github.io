@@ -123,6 +123,9 @@ ls -l |awk '{print $5,$NF}'|sort -k 1| awk 'a[$1]++{print $2}'| xargs -t -i rm -
 
 # 去重(通过md5)
 find $PATH -type f -exec md5sum {} \; | sort -k 1 | awk 'a[$1]++{print $2}' | xargs -t -i rm -f {}
+
+# rsync 剪切
+rsync --remove-source-files -azP 源 目标
 ```
 
 # 网络
@@ -171,6 +174,16 @@ log-scale: yes
 
 #tcpdump 检查ping是否响应
 tcpdump -i eth0 icmp 
+
+# SOCKS5 转 HTTP 代理
+# privoxy /etc/privoxy/config
+# forward socks5
+forward-socks5 / 127.0.0.1:1080 .
+listen-address 0.0.0.0:3128
+# local network do not use proxy
+forward 10...*/ .
+forward 192...*/ .
+forward 127...*/ .
 ```
 
 # ssh
@@ -252,4 +265,7 @@ git commit --date="10 hour ago" -m "Your commit message"
 certutil -hashfile file -?
 
 certutil -hashfile file MD5
+
+# Windows 端口转发
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=192.168.215.123 connectport=22
 ```

@@ -1,6 +1,14 @@
 ```bash
 # arch
 yay -S ruby-build rbenv
+
+# mac
+brew install rbenv ruby-build
+
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+eval "$(rbenv init -)"
+
 rbenv install 2.7.3
 rbenv local
 gem install bundler
