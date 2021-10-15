@@ -184,6 +184,16 @@ listen-address 0.0.0.0:3128
 forward 10...*/ .
 forward 192...*/ .
 forward 127...*/ .
+
+# 使用nmcli创建Wi-Fi热点
+# https://unix.stackexchange.com/a/310699
+nmcli con add type wifi ifname wlan0 con-name Hostspot autoconnect yes ssid Hostspot
+nmcli con modify Hostspot 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
+nmcli con modify Hostspot wifi-sec.key-mgmt wpa-psk
+nmcli con modify Hostspot wifi-sec.psk "veryveryhardpassword1234"
+nmcli con up Hostspot
+# 查看热点信息
+nmcli con show Hostspot
 ```
 
 # ssh
@@ -218,6 +228,17 @@ DynamicForward 8080
 # A通过跳板机B scp C上的文件到本地 
 # 在A上执行
 scp -o ProxyCommand="ssh root@B nc C 22" -r user@C:/tmp/xxx /tmp/xxx
+
+# A 通过B 直接ssh C
+# 在A的~/.ssh/config 添加
+Host C
+    ProxyCommand ssh B -W %h:%p
+
+# ssh 不断线 不使用哈希值
+# ~/.ssh/config
+Host *
+    HashKnownHosts no
+    ServerAliveInterval 40
 ```
 
 # 时间
