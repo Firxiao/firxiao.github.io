@@ -45,9 +45,9 @@ proxy:
   password: <password>
 EOF
 
-chmod 600 /etc/docker/registry/config.yml 
-docker run -d -p 5000:5000 --restart=always --name registry \
-             -v `pwd`/config.yml:/etc/docker/registry/config.yml \
+sudo chmod 600 /etc/docker/registry/config.yml 
+sudo docker run -d -p 5000:5000 --restart=always --name registry \
+             -v /etc/docker/registry/config.yml:/etc/docker/registry/config.yml \
              registry:2
 
 ## 查看日志
@@ -116,7 +116,7 @@ sudo docker pull centos
 tail -f /var/log/nginx/docker-access.log
 ```
 
-这样默认就会去配置好的_mirrors_里面拿镜像.
+这样默认就会去配置好的*mirrors*里面拿镜像.
 
 
 
