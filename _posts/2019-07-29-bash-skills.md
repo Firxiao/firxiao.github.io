@@ -239,6 +239,9 @@ Host C
 Host *
     HashKnownHosts no
     ServerAliveInterval 40
+
+# 忘记公钥
+ssh-keygen -y -f 私钥 > 公钥
 ```
 
 # 时间
