@@ -126,6 +126,9 @@ find $PATH -type f -exec md5sum {} \; | sort -k 1 | awk 'a[$1]++{print $2}' | xa
 
 # rsync 剪切
 rsync --remove-source-files -azP 源 目标
+
+# curl post json文件
+curl -X POST -H "Content-Type: application/json" -d @FILENAME 目标
 ```
 
 # 网络
@@ -292,4 +295,8 @@ certutil -hashfile file MD5
 
 # Windows 端口转发
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=192.168.215.123 connectport=22
+
+# Ubuntu snap 配置代理
+sudo snap set system proxy.http="http://proxy:3128"
+sudo snap set system proxy.https="http://proxy:3128"
 ```
