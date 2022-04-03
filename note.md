@@ -1,3 +1,8 @@
+```
+bundle config mirror.https://rubygems.org https://mirrors.ustc.edu.cn/rubygems/
+```
+
+
 ```bash
 # arch
 yay -S ruby-build rbenv
