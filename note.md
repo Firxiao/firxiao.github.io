@@ -14,7 +14,7 @@ brew install rbenv ruby-build
 # the following to ~/.zshrc:
 eval "$(rbenv init -)"
 
-rbenv install 2.7.3
+rbenv install 3.3.2
 rbenv local
 gem install bundler
 bundle install
